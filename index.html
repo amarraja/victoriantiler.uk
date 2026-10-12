@@ -4,27 +4,138 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Victorian Tiler</title>
+  <meta name="description" content="Restoration and installation of traditional Victorian floor tiles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --cream: #f1e8d4;
+      --ink: #231c18;
+      --terracotta: #a8472b;
+      --ochre: #c89a4b;
+      --grout: #d9ccb2;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Georgia, "Times New Roman", serif;
-      background: #f6f1e7;
-      color: #3b2a1f;
-      text-align: center;
-      padding: 16px;
+      padding: 24px 16px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--ink);
+      background-color: var(--ink);
+      /* Octagon-and-dot floor, as in a Victorian hallway */
+      background-image:
+        radial-gradient(ellipse at center, rgba(35, 28, 24, 0) 40%, rgba(35, 28, 24, 0.55) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23231c18'/%3E%3Cpolygon points='13,0 51,0 64,13 64,51 51,64 13,64 0,51 0,13' fill='%23f1e8d4' stroke='%23d9ccb2' stroke-width='1.5'/%3E%3Cpolygon points='32,20 44,32 32,44 20,32' fill='%23a8472b' stroke='%23d9ccb2' stroke-width='1'/%3E%3Cpolygon points='32,26 38,32 32,38 26,32' fill='%23c89a4b'/%3E%3C/svg%3E");
+      background-size: cover, 64px 64px;
+      background-attachment: fixed;
     }
-    h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
-    p { font-size: 1.125rem; margin: 0; }
+
+    .panel {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      padding: 56px 40px 48px;
+      text-align: center;
+      background: var(--cream);
+      border: 3px solid var(--ink);
+      box-shadow:
+        0 0 0 8px var(--cream),
+        0 0 0 11px var(--terracotta),
+        0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Inner rule, like a tile border strip */
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid var(--terracotta);
+      pointer-events: none;
+    }
+
+    .est {
+      margin: 0 0 12px;
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Playfair Display SC", Georgia, serif;
+      font-size: clamp(2.2rem, 8vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 22px 0;
+    }
+    .ornament span {
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      background: var(--ink);
+    }
+    .ornament span:nth-child(2) { width: 14px; height: 14px; background: var(--terracotta); }
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      flex: 0 1 80px;
+      height: 1px;
+      background: var(--ink);
+    }
+
+    .tagline {
+      margin: 0 0 20px;
+      font-size: 1.35rem;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .services {
+      margin: 0 0 28px;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .soon {
+      display: inline-block;
+      margin: 0;
+      padding: 8px 22px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--ink);
+    }
+
+    @media (max-width: 480px) {
+      .panel { padding: 44px 24px 36px; }
+    }
   </style>
 </head>
 <body>
-  <main>
+  <main class="panel">
+    <p class="est">Traditional Craftsmanship</p>
     <h1>Victorian Tiler</h1>
-    <p>Coming soon.</p>
+    <div class="ornament" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p class="tagline">Restoring and laying period geometric &amp; encaustic floors</p>
+    <p class="services">Hallways &middot; Paths &middot; Porches &middot; Fireplaces</p>
+    <p class="soon">Website coming soon</p>
   </main>
 </body>
 </html>
